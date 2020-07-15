@@ -95,7 +95,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\assets\demo\chart-area-demo.js" />
+    <Content Include="Areas\Admin\assets\demo\chart-bar-demo.js" />
+    <Content Include="Areas\Admin\assets\demo\chart-pie-demo.js" />
+    <Content Include="Areas\Admin\assets\demo\datatables-demo.js" />
+    <Content Include="Areas\Admin\assets\img\error-404-monochrome.svg" />
     <Content Include="Areas\Admin\css\main.css" />
+    <Content Include="Areas\Admin\css\styless.css" />
     <Content Include="Areas\Admin\css\util.css" />
     <Content Include="Areas\Admin\fonts\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="Areas\Admin\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
@@ -108,6 +114,7 @@
     <Content Include="Areas\Admin\images\icons\map-marker.png" />
     <Content Include="Areas\Admin\js\main.js" />
     <Content Include="Areas\Admin\js\map-custom.js" />
+    <Content Include="Areas\Admin\js\scriptss.js" />
     <Content Include="Areas\Admin\vendor\animate\animate.css" />
     <Content Include="Areas\Admin\vendor\animsition\css\animsition.css" />
     <Content Include="Areas\Admin\vendor\animsition\css\animsition.min.css" />
@@ -326,8 +333,8 @@
     <Content Include="Areas\Admin\vendor\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="Areas\Admin\Views\Login\YazarGirdi.cshtml" />
     <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Login\LogOut.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -32,14 +32,7 @@ namespace MyBlogApp.Areas.Admin.Controllers
             if (ur != null)
             {
                 string userRole = FindUserRole(ur.UserRoleID);
-                if (!string.IsNullOrEmpty(userRole))
-                {
-                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, ur.UserName,DateTime.Now, DateTime.Now.AddMinutes(1),true, userRole, FormsAuthentication.FormsCookiePath);
-                    HttpCookie ck = new HttpCookie(FormsAuthentication.FormsCookieName);
-                    Response.Cookies.Add(ck);
-                }
-              
-                //FormsAuthentication.SetAuthCookie(ur.UserName, true);
+                FormsAuthentication.SetAuthCookie(ur.UserName, true);
                
                 if (userRole == "Admin")
                 {
@@ -63,7 +56,7 @@ namespace MyBlogApp.Areas.Admin.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            return View("Login");
+            return RedirectToAction("Login","Login");
         }
         public string FindUserRole(int userRoleID)
         {
