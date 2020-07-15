@@ -16,9 +16,16 @@ namespace MyBlogApp.Areas.Admin
         {
             context.MapRoute(
                 "Admin_default",
-                "Admin/{controller}/{action}/{id}",
-                new { controller = "Login", action = "Login", id = UrlParameter.Optional }
+                "Admin/{controller}/{action}",
+                new { controller = "Login", action = "Login" }
             );
+          
+            context.MapRoute(
+             "Admin_blog",
+             "Blog/{controller}/{action}",
+             new { controller = "Blog", action = "Index"},
+             namespaces: new string[] {"MyBlogApp.Areas.Admin.Controllers"}
+         );
         }
     }
 }

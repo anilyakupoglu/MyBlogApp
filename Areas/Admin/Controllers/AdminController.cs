@@ -14,6 +14,10 @@ namespace MyBlogApp.Areas.Admin.Controllers
  
         public ActionResult Index()
         {
+            ViewBag.BlogCount = db.Blogs.Count();
+            ViewBag.ActiveBlog = db.Blogs.Where(a => a.IsActive).Count();
+            ViewBag.ActiveHome = db.Blogs.Where(a => a.HomePage).Count();
+            ViewBag.PasiveBlog = db.Blogs.Where(a => a.HomePage == false).Count();
             return View(db.Blogs.ToList());
         }
     }

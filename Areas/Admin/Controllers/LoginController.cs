@@ -15,13 +15,13 @@ namespace MyBlogApp.Areas.Admin.Controllers
     {
         MyBlogContext db = new MyBlogContext();
 
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
 
 
-        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Login(string userName, string password)
         {
@@ -40,6 +40,7 @@ namespace MyBlogApp.Areas.Admin.Controllers
                 }
                 else
                 {
+                    ViewBag.Mesaj ="Yetkisiz erişim";
                     return View();
                 }
 

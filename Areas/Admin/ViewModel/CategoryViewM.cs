@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MyBlogApp.Areas.MyBlog.ViewModels
+namespace MyBlogApp.Areas.Admin.ViewModel
 {
     public class CategoryViewM
     {

@@ -12,37 +12,36 @@
     <div class="row">
         <div class="col-xl-3 col-md-6">
             <div class="card bg-primary text-white mb-4">
-                <div class="card-body">Primary Card</div>
+                <div class="card-body"><strong>Toplam Makale</strong><span style=" color:black;font-size:70px;font-weight:700;  opacity:0.4;float:right">@ViewBag.BlogCount</span></div>
+
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body"><strong>Aktif Makale</strong> <span style=" color:black;font-size:70px; font-weight:700; opacity:0.4;float:right">@ViewBag.ActiveBlog</span></div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
             <div class="card bg-warning text-white mb-4">
-                <div class="card-body">Warning Card</div>
+                <div class="card-body"><strong>Anasayfada Gösterilen</strong> <span style=" color:black;font-size:70px;font-weight:700;  opacity:0.4;float:right">@ViewBag.ActiveHome</span></div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="card bg-success text-white mb-4">
-                <div class="card-body">Success Card</div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-6">
+
             <div class="card bg-danger text-white mb-4">
-                <div class="card-body">Danger Card</div>
+                <div class="card-body"><strong>Pasif Makale</strong><span style=" color:black;font-size:70px;font-weight:700;  opacity:0.4;float:right">@ViewBag.PasiveBlog</span></div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="#">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
         </div>
@@ -90,28 +89,28 @@
                         <tbody>
                             @foreach (MyBlogApp.Models.Blog item in Model)
                             {
-                            <tr>
-                                <td>@item.BlogId</td>
-                                <td>@item.Head</td>
-                                <td>@item.Description</td>
-                                <td>@item.CreateDate</td>
-                                @if (@item.IsActive)
-                                {
-                                    <td><button type="button" disabled class="btn btn-success btn-sm">Evet</button></td>
-                                }
-                                else
-                                {
-                                    <td><button type="button" disabled class="btn btn-warning btn-sm">Hayır</button></td>
-                                }
-                                @if (@item.HomePage)
-                                {
-                                    <td><button type="button" disabled class="btn btn-success btn-sm">Evet</button></td>
-                                }
-                                else
-                                {
-                                    <td><button type="button" disabled class="btn btn-warning btn-sm">Hayır</button></td>
-                                }
-                            </tr>
+                                <tr>
+                                    <td>@item.BlogId</td>
+                                    <td>@item.Head</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.CreateDate</td>
+                                    @if (@item.IsActive)
+                                    {
+                                        <td><button type="button" disabled class="btn btn-success btn-sm">Evet</button></td>
+                                    }
+                                    else
+                                    {
+                                        <td><button type="button" disabled class="btn btn-danger btn-sm">Hayır</button></td>
+                                    }
+                                    @if (@item.HomePage)
+                                    {
+                                        <td><button type="button" disabled class="btn btn-success btn-sm">Evet</button></td>
+                                    }
+                                    else
+                                    {
+                                        <td><button type="button" disabled class="btn btn-danger btn-sm">Hayır</button></td>
+                                    }
+                                </tr>
                             }
                         </tbody>
                         <tfoot>

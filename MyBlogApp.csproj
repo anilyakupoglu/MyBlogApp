@@ -236,11 +236,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Blog\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Blog\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Blog\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Blog\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Blog\Index.cshtml" />
     <Content Include="css\.DS_Store" />
     <Content Include="css\bootstrap\.DS_Store" />
     <Content Include="css\css\.DS_Store" />
@@ -266,10 +261,6 @@
     <Content Include="fonts\open-iconic\open-iconic.woff" />
     <Content Include="images\.DS_Store" />
     <Content Include="js\.DS_Store" />
-    <Content Include="Areas\MyBlog\Views\web.config" />
-    <Content Include="Areas\MyBlog\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\MyBlog\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\MyBlog\Views\Default\Index.cshtml" />
     <Content Include="Areas\Admin\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
     <Content Include="Areas\Admin\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
     <Content Include="Areas\Admin\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
@@ -331,10 +322,12 @@
     <Content Include="Areas\Admin\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="Areas\Admin\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Areas\Admin\vendor\bootstrap\css\bootstrap.min.css.map" />
-    <Content Include="Areas\Admin\Views\Login\YazarGirdi.cshtml" />
     <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Login\LogOut.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutBlog.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Blog\CategoryList.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -342,7 +335,6 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
-    <Content Include="Areas\MyBlog\Views\Default\CategoryList.cshtml" />
     <Content Include="scss\.DS_Store" />
     <Content Include="scss\bootstrap\.DS_Store" />
     <Content Include="scss\bootstrap\bootstrap-grid.scss" />
@@ -445,9 +437,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\UserRoleSecurity\UserRoleProvider.cs" />
     <Compile Include="Areas\Admin\ViewModel\UserLoginViewModel.cs" />
-    <Compile Include="Areas\MyBlog\Controllers\DefaultController.cs" />
-    <Compile Include="Areas\MyBlog\MyBlogAreaRegistration.cs" />
-    <Compile Include="Areas\MyBlog\ViewModels\CategoryViewM.cs" />
+    <Compile Include="Areas\Admin\ViewModel\CategoryViewM.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -486,7 +476,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\MyBlog\Data\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

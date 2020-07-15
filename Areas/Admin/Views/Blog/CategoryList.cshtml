@@ -1,4 +1,5 @@
-﻿@model List<MyBlogApp.Areas.MyBlog.ViewModels.CategoryViewM>
+﻿
+@model List<MyBlogApp.Areas.Admin.ViewModel.CategoryViewM>
 
 <div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
     <div class="sidebar-box pt-md-4">
@@ -13,7 +14,7 @@
         <h3 class="sidebar-heading">Kategoriler</h3>
         <ul class="categories">
 
-            @foreach(var item in Model)
+            @foreach (var item in Model)
             {
                 <li><a href="#">@item.CategoryName <span>(@item.BlogCount)</span></a></li>
 
