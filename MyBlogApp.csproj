@@ -436,6 +436,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\UserRoleSecurity\UserRoleProvider.cs" />
+    <Compile Include="Areas\Admin\ViewModel\BlogDetailViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModel\UserLoginViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModel\CategoryViewM.cs" />
     <Compile Include="Controllers\HomeController.cs" />
