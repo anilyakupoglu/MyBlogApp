@@ -20,6 +20,8 @@ namespace MyBlogApp.Areas.Admin.Controllers
             ViewBag.ActiveHome = ActiveHomepageCount();
             ViewBag.PasiveBlog = DeActiveHomepageCount();
 
+    
+
             BlogDetailViewModel blogDetailView = new BlogDetailViewModel();
             List<Blog> blogs = db.Blogs.ToList();
             List<Category> categories = db.Categories.ToList();
@@ -29,6 +31,7 @@ namespace MyBlogApp.Areas.Admin.Controllers
             return View(blogDetailView);
         }
 
+       
         public int DeActiveHomepageCount()
         {
             return db.Blogs.Where(a => a.HomePage == false).Count();

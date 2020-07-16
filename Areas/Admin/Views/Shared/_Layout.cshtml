@@ -10,6 +10,7 @@
     <link href="/Areas/Admin/css/styless.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+
 </head>
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -18,7 +19,7 @@
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
             <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                <input class="form-control" type="text" placeholder="Ara" aria-label="Search" aria-describedby="basic-addon2" />
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
                 </div>
@@ -42,8 +43,12 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <a class="nav-link" href="index.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        <a class="nav-link" href="@Url.Action("Index","Admin",new { area="Admin"})">
+
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+
+                            </div>
                             Anasayfa
                         </a>
                         <div class="sb-sidenav-menu-heading">OPERASYON</div>
@@ -54,9 +59,8 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-static.html">Yeni Kategori</a>
-                                <a class="nav-link" href="layout-static.html">Listele</a>
-                                <a class="nav-link" href="layout-static.html">Güncelle / Sil</a>
+                                <a class="nav-link" href="@Url.Action("CreateCategory","Category",new { area="Admin"})">Yeni Kategori</a>
+                                <a class="nav-link" href="@Url.Action("Index","Category",new { area="Admin"})">Listele</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -91,7 +95,12 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-                @RenderBody()
+                <div class="container-fluid">
+                    <ol class="breadcrumb mb-4 mt-4">
+                        <li class="breadcrumb-item active">@ViewBag.Title</li>
+                    </ol>
+                    @RenderBody()
+                </div>
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
@@ -107,14 +116,17 @@
             </footer>
         </div>
     </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="/Areas/Admin/js/scriptss.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="/Areas/Admin/assets/demo/chart-area-demo.js"></script>
-    <script src="/Areas/Admin/assets/demo/chart-bar-demo.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="/Areas/Admin/assets/demo/chart-area-demo.js"></script>
+        <script src="/Areas/Admin/assets/demo/chart-bar-demo.js"></script>*@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="/Areas/Admin/assets/demo/datatables-demo.js"></script>
+
+
 </body>
 </html>

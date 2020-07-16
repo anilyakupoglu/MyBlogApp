@@ -1,0 +1,98 @@
+﻿@model MyBlogApp.Models.Category
+@{
+    ViewBag.Title = "Yeni Kategori";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            SaveCategory();
+        });
+    });
+
+    function SaveCategory() {
+        var categoryName = $("#categoryName").val();
+        var category = { CategoryName: categoryName };
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf8',
+            data: JSON.stringify(category),
+            url: '/Category/CreateCategory',
+            success: function (response) {
+                if (response.success == true) {
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "progressBar": true,
+                        "positionClass": "toast-bottom-right",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    Command: toastr["success"]("Ekleme işlemi gerçekleştirildi !", "Başarılı");
+                    setTimeout(function () { location.href = "/Admin/Category/CreateCategory" }, 5000);
+                }
+
+            },
+            error: function () {
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": true,
+                    "progressBar": true,
+                    "positionClass": "toast-bottom-right",
+                    "preventDuplicates": true,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                Command: toastr["error"]("Ekleme işlemi sırasında bir hata oluştu !", "Hata");
+                setTimeout(function () { location.href = "/Admin/Category/CreateCategory" }, 5000);
+            }
+
+        });
+    }
+</script>
+
+
+<div class="col-md-4">
+    <div class="card">
+
+        <form class="form-horizontal">
+            <div class="card-body">
+                <div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Kategori Adı</label>
+                    <div class="col-sm-9">
+                        <input id="categoryName" type="text" name="categoryName" value="" class="form-control" />
+
+                    </div>
+                </div>
+            </div>
+            <div class="border-top">
+                <div class="card-body">
+                    <input id="btnSave" type="button" name="SaveCategoryName" value="Ekle" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

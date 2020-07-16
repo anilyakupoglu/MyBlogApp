@@ -5,11 +5,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MyBlogApp.Controllers
+namespace MyBlogApp.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
-        private MyBlogContext db = new MyBlogContext();
+        MyBlogContext db = new MyBlogContext();
         public ActionResult Index()
         {
             return View(db.Categories.ToList());
@@ -28,9 +29,24 @@ namespace MyBlogApp.Controllers
             return View(category);
         }
 
+        [HttpGet]
+        public ActionResult CreateCategory()
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult CreateCategory(Category category)
         {
-            db.Categories.Add(category);
+            Category cat = db.Categories.FirstOrDefault(a => a.CategoryName == category.CategoryName);
+
+            if (ModelState.IsValid && cat == null)
+            {
+                db.Categories.Add(category);
+                db.SaveChanges();
+       
+                return Json(data:new {success=true},JsonRequestBehavior.AllowGet);
+            }
+
             return View();
         }
     }

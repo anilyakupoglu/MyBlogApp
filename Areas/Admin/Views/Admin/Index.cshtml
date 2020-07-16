@@ -1,18 +1,14 @@
 ﻿@model MyBlogApp.Areas.Admin.ViewModel.BlogDetailViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title= "Anasayfa";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container-fluid">
-    <h1 class="mt-4">Dashboard</h1>
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Dashboard</li>
-    </ol>
+
     <div class="row">
         <div class="col-xl-3 col-md-6">
             <div class="card bg-primary text-white mb-4">
-            
+
                 <div class="card-body"><strong style="font-size:25px;">Toplam Makale</strong><span style=" color:black;font-size:80px;font-weight:700;  opacity:0.4;float:right">@ViewBag.BlogCount</span></div>
 
                 <div class="card-footer d-flex align-items-center justify-content-between">
@@ -91,42 +87,45 @@
                         <tbody>
                             @foreach (var item in Model.Blogs)
                             {
-                            <tr>
-                                <td>@item.BlogId</td>
-                                <td>@item.Head</td>
-                                <td>@item.Description</td>
-                                <td>@item.CreateDate</td>
-                                @foreach (var itemc in Model.Categories)
-                                {
-                                    if (item.CategoryId == itemc.CategoryId)
+                                <tr>
+                                    <td>@item.BlogId</td>
+                                    <td>@item.Head</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.CreateDate</td>
+                                    @foreach (var itemc in Model.Categories)
                                     {
-                                        <td>@itemc.CategoryName</td>
+                                        if (item.CategoryId == itemc.CategoryId)
+                                        {
+
+                                            <td>
+                                                <div class=@ViewBag.ChangeColor>@itemc.CategoryName</div>
+                                            </td>
+                                        }
+
                                     }
 
-                                }
-
-                                @if (@item.IsActive)
-                                {
-                                    <td><button type="button" disabled class="btn btn-success btn-sm">Evet</button></td>
-                                }
-                                else
-                                {
-                                    <td><button type="button" disabled class="btn btn-danger btn-sm">Hayır</button></td>
-                                }
-                                @if (@item.HomePage)
-                                {
-                                    <td><button type="button" disabled class="btn btn-success btn-sm">Evet</button></td>
-                                }
-                                else
-                                {
-                                    <td><button type="button" disabled class="btn btn-danger btn-sm">Hayır</button></td>
-                                }
-                            </tr>
+                                    @if (@item.IsActive)
+                                    {
+                                        <td><button type="button" disabled class="btn btn-success btn-sm">Evet</button></td>
+                                    }
+                                    else
+                                    {
+                                        <td><button type="button" disabled class="btn btn-danger btn-sm">Hayır</button></td>
+                                    }
+                                    @if (@item.HomePage)
+                                    {
+                                        <td><button type="button" disabled class="btn btn-success btn-sm">Evet</button></td>
+                                    }
+                                    else
+                                    {
+                                        <td><button type="button" disabled class="btn btn-danger btn-sm">Hayır</button></td>
+                                    }
+                                </tr>
                             }
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>MAkale ID</th>
+                                <th>Makale ID</th>
                                 <th>Başlık</th>
                                 <th>Açıklama</th>
                                 <th>Oluşturulma Tarihi</th>
@@ -141,7 +140,6 @@
             </div>
         </div>
     </div>
-</div>
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />

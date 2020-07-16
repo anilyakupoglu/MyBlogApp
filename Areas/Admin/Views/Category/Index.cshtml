@@ -1,0 +1,62 @@
+﻿@model List<MyBlogApp.Models.Category>
+    @{
+        ViewBag.Title = "Kategoriler";
+        Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    }
+
+   
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Kategori Listesi
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTableCategories" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Kategori ID</th>
+                                <th>Kategori Adı</th>
+                                <th></th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (MyBlogApp.Models.Category item in Model)
+                            {
+                                <tr>
+                                    <td>@item.CategoryId</td>
+                                    <td>@item.CategoryName</td>
+                                    <td><button class="btn btn-warning">Güncelle</button> <button class="btn btn-danger">Sil</button></td>
+
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Kategori ID</th>
+                                <th>Kategori Adı</th>
+                                <th></th>
+
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" charset="utf-8" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#dataTableCategories').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Turkish.json"
+            }
+        });
+    });
+    </script>
