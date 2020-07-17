@@ -1,6 +1,7 @@
-﻿@model MyBlogApp.Models.Category
+﻿
+@model MyBlogApp.Models.Category
 @{
-    ViewBag.Title = "Yeni Kategori";
+    ViewBag.Title = "Kategori Güncelle";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -8,21 +9,22 @@
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#btnSave").click(function () {
-            SaveCategory();
+        $("#btnUpdate").click(function () {
+            UpdateCategory();
         });
     });
 
-    function SaveCategory() {
+    function UpdateCategory() {
         var categoryName = $("#categoryName").val();
-        var category = { CategoryName: categoryName };
+        var categoryID = $("#categoryID").val();
+        var category = { CategoryName: categoryName, CategoryId:categoryID };
 
         $.ajax({
             type: 'POST',
             dataType: 'JSON',
             contentType: 'application/json; charset=utf8',
             data: JSON.stringify(category),
-            url: '/Category/CreateCategory',
+            url: '/Category/UpdateCategory',
             success: function (response) {
                 if (response.success == true) {
                     toastr.options = {
@@ -42,8 +44,8 @@
                         "showMethod": "fadeIn",
                         "hideMethod": "fadeOut"
                     }
-                    Command: toastr["success"]("Ekleme işlemi gerçekleştirildi !", "Başarılı");
-                    setTimeout(function () { location.href = "/Admin/Category/CreateCategory" }, 3000);
+                    Command: toastr["success"]("Güncelleme işlemi gerçekleştirildi !", "Başarılı");
+                    setTimeout(function () { location.href = "/Admin/Category/Index" }, 3000);
                 }
 
             },
@@ -65,8 +67,8 @@
                     "showMethod": "fadeIn",
                     "hideMethod": "fadeOut"
                 }
-                Command: toastr["error"]("Ekleme işlemi sırasında bir hata oluştu !", "Hata");
-                setTimeout(function () { location.href = "/Admin/Category/CreateCategory" }, 3000);
+                Command: toastr["error"]("Güncelleme işlemi sırasında bir hata oluştu !", "Hata");
+                setTimeout(function () { location.href = "/Admin/Category/Index" }, 3000);
             }
 
         });
@@ -80,16 +82,23 @@
         <form class="form-horizontal">
             <div class="card-body">
                 <div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Kategori ID</label>
+                    <div class="col-sm-9">
+                        <input id="categoryID" type="text"  disabled name="categoryID" value=@Model.CategoryId class="form-control" />
+
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Kategori Adı</label>
                     <div class="col-sm-9">
-                        <input id="categoryName" type="text" name="categoryName" value="" class="form-control" />
+                        <input id="categoryName" type="text" name="categoryName" value="@Model.CategoryName" class="form-control" />
 
                     </div>
                 </div>
             </div>
             <div class="border-top">
                 <div class="card-body">
-                    <input id="btnSave" type="button" name="SaveCategoryName" value="Ekle" class="btn btn-primary" />
+                    <input id="btnUpdate" type="button" name="updateCategory" value="Güncelle" class="btn btn-primary" />
                 </div>
             </div>
         </form>

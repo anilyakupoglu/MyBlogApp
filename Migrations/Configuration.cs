@@ -45,7 +45,6 @@
                 context.Blogs.Add(item);
             }
             context.SaveChanges();
-
         }
     }
 }

@@ -1,57 +1,57 @@
 ﻿@model List<MyBlogApp.Models.Category>
-    @{
-        ViewBag.Title = "Kategoriler";
-        Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    }
-
-   
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-table mr-1"></i>
-                Kategori Listesi
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTableCategories" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Kategori ID</th>
-                                <th>Kategori Adı</th>
-                                <th></th>
+@{
+    ViewBag.Title = "Kategoriler";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
 
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (MyBlogApp.Models.Category item in Model)
-                            {
-                                <tr>
-                                    <td>@item.CategoryId</td>
-                                    <td>@item.CategoryName</td>
-                                    <td><button class="btn btn-warning">Güncelle</button> <button class="btn btn-danger">Sil</button></td>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Kategori Listesi
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTableCategories" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Kategori ID</th>
+                        <th>Kategori Adı</th>
+                        <th></th>
 
-                                </tr>
-                            }
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Kategori ID</th>
-                                <th>Kategori Adı</th>
-                                <th></th>
 
-                            </tr>
-                        </tfoot>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (MyBlogApp.Models.Category item in Model)
+                    {
+                        <tr>
+                            <td>@item.CategoryId</td>
+                            <td>@item.CategoryName</td>
+                            <td><a class="btn btn-warning" href="/Admin/Category/UpdateCategory/@item.CategoryId">Güncelle</a> <button class="btn btn-danger" onclick="javascript: DeleteCategory(@item.CategoryId)" id="btnDelete">Sil</button></td>
 
-                    </table>
-                </div>
-            </div>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Kategori ID</th>
+                        <th>Kategori Adı</th>
+                        <th></th>
+
+                    </tr>
+                </tfoot>
+
+            </table>
         </div>
+    </div>
+</div>
 
 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
-    <script type="text/javascript" charset="utf-8" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+<script type="text/javascript" charset="utf-8" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script>
     $(document).ready(function () {
         $('#dataTableCategories').DataTable({
             "language": {
@@ -59,4 +59,66 @@
             }
         });
     });
-    </script>
+    function DeleteCategory(CategoryId) {
+
+        var category = { id: CategoryId };
+        var con = confirm("Silmek istediğinize emin misiniz?")
+        if (con == true) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'JSON',
+                contentType: 'application/json; charset=utf8',
+                data: JSON.stringify(category),
+                url: '/Category/DeleteCategory',
+                success: function (response) {
+                    if (response.success == true) {
+                        toastr.options = {
+                            "closeButton": true,
+                            "debug": false,
+                            "newestOnTop": true,
+                            "progressBar": true,
+                            "positionClass": "toast-bottom-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "3000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        setTimeout(function () { location.href = "/Admin/Category/Index" }, 3000);
+                        Command: toastr["success"]("Silme işlemi gerçekleştirildi !", "Başarılı");
+
+                    }
+
+                },
+                error: function () {
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "progressBar": true,
+                        "positionClass": "toast-bottom-right",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "3000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    setTimeout(function () { location.href = "/Admin/Category/Index" }, 3000);
+                    Command: toastr["error"]("Silme işlemi sırasında bir hata oluştu !", "Hata");
+
+                }
+
+            });
+        }
+    }
+</script>
