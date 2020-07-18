@@ -1,0 +1,131 @@
+﻿@model MyBlogApp.Models.Blog
+@{
+    ViewBag.Title = "Yeni Makale";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@*<script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $("#btnPublish").click(function () {
+                CKEDITOR.instances["textArea"].updateElement();
+                CreateBlog();
+            });
+        });
+
+        function CreateBlog() {
+            var content = CKEDITOR.instances.textArea.getData();
+            var CreateBlog = { Content: content };
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'JSON',
+                contentType: 'application/json; charset=utf8',
+                data: CreateBlog,
+                url: '/Blog/CreateBlog',
+                success: function (response) {
+                    if (response.success == true) {
+                        toastr.options = {
+                            "closeButton": true,
+                            "debug": false,
+                            "newestOnTop": true,
+                            "progressBar": true,
+                            "positionClass": "toast-bottom-right",
+                            "preventDuplicates": true,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "3000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        Command: toastr["success"]("Ekleme işlemi gerçekleştirildi !", "Başarılı");
+                        setTimeout(function () { location.href = "/Admin/Category/CreateCategory" }, 3000);
+                    }
+
+                },
+                error: function () {
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "progressBar": true,
+                        "positionClass": "toast-bottom-right",
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "3000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    Command: toastr["error"]("Ekleme işlemi sırasında bir hata oluştu !", "Hata");
+                    setTimeout(function () { location.href = "/Admin/Category/CreateCategory" }, 3000);
+                }
+
+            });
+        }
+    </script>*@
+
+
+<div class="col-lg-8">
+
+    @using (Html.BeginForm("CreateBlog", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <div class="form-group">
+            <label class="bmd-label-floating">Başlık</label>
+            @Html.TextBoxFor(model => model.Head, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label class="bmd-label-floating">Açıklama</label>
+            @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label class="bmd-label-floating">Kategori</label>
+
+            @Html.DropDownListFor(model => model.CategoryId, (IEnumerable<SelectListItem>)ViewBag.CategoryBind, "Bir kategori seçin", new { @class = "form-control" })
+
+        </div>
+        <div class="form-group">
+            <label class="bmd-label-floating">Resim</label>
+            <input type="file" name="file" id="file"/>
+           
+            @*@Html.TextBoxFor(model => model.Picture, new { @class = "form-control" })*@
+        </div>
+        <div class="form-group">
+
+            @Html.CheckBoxFor(model => model.IsActive, false) <label class="bmd-label-floating">Aktif mi?</label>
+        </div>
+        <div class="form-group">
+            @Html.CheckBoxFor(model => model.HomePage, false) <label class="bmd-label-floating">Anasayfada gösterilsin mi?</label>
+        </div>
+        <div class="form-group">
+            @Html.TextAreaFor(model => model.Content, new { @id = "textArea", @name = "textArea", @class = "ckeditor" })
+            @*@Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })*@
+            @*<textarea id="textArea" name="textArea" class="ckeditor"></textarea>*@
+
+        </div>
+        <div class="form-group">
+            <input id="btnPublish" type="submit" class="btn btn-primary float-right" value="Yayınla">
+        </div>
+
+    }
+</div>
+
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Areas/Admin/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("textArea");
+    var data = CKEDITOR.instances.textArea.getData();
+
+</script>

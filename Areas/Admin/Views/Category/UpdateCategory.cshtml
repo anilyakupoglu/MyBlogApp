@@ -17,7 +17,7 @@
     function UpdateCategory() {
         var categoryName = $("#categoryName").val();
         var categoryID = $("#categoryID").val();
-        var category = { CategoryName: categoryName, CategoryId:categoryID };
+        var category = { CategoryName: categoryName, CategoryId: categoryID };
 
         $.ajax({
             type: 'POST',
@@ -84,7 +84,7 @@
                 <div class="form-group row">
                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Kategori ID</label>
                     <div class="col-sm-9">
-                        <input id="categoryID" type="text"  disabled name="categoryID" value=@Model.CategoryId class="form-control" />
+                        <input class="form-control-plaintext" id="categoryID" type="text" readonly name="categoryID" value=@Model.CategoryId />
 
                     </div>
                 </div>
